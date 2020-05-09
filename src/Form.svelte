@@ -36,13 +36,13 @@
             bind:value={material}
             type="text"
             id="material"
-            placeholder="Дерево, клей и др." />
+            placeholder="Дерево, краска и др." />
         <label for="price">Стоимость</label>
         <input
             bind:value={price}
             type="number"
             id="price"
-            placeholder="Стоимость"
+            placeholder="Стоимость в рублях"
             min="0"
             step="any" />
     </fieldset>
