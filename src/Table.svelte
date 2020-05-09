@@ -22,6 +22,10 @@
     function edit(id, material, price) {
         dispatch('edit', { id, material, price });
     }
+
+    function remove(id) {
+        materialStore.remove(id);
+    }
 </script>
 
 <table class="primary">
@@ -40,7 +44,9 @@
                 <td>{item.material}</td>
                 <td>{formatter.format(item.price)}</td>
                 <td>
-                    <i class="far fa-trash-alt" />
+                    <i
+                        on:click|stopPropagation={remove(item.id)}
+                        class="far fa-trash-alt" />
                 </td>
             </tr>
         {/each}
