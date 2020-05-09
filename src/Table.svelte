@@ -1,6 +1,8 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
     import materialStore from './material.store.js';
 
+    const dispatch = createEventDispatcher();
     let materials = [];
 
     $: total = materials.reduce((acc, curr) => {
@@ -16,6 +18,10 @@
         style: 'currency',
         currency: 'RUB',
     });
+
+    function edit(id, material, price) {
+        dispatch('edit', { id, material, price });
+    }
 </script>
 
 <table class="primary">
@@ -28,7 +34,9 @@
     </thead>
     <tbody>
         {#each materials as item (item.id)}
-            <tr>
+            <tr
+                on:click={edit(item.id, item.material, item.price)}
+                class="pointable">
                 <td>{item.material}</td>
                 <td>{formatter.format(item.price)}</td>
                 <td>
@@ -48,5 +56,9 @@
 <style>
     table {
         width: 100%;
+    }
+
+    .pointable {
+        cursor: pointer;
     }
 </style>

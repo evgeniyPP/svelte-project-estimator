@@ -2,7 +2,7 @@
     import materialStore from './material.store.js';
 
     export let id;
-    export let material = '';
+    export let material;
     export let price;
 
     $: editMode = id != null;
@@ -17,6 +17,8 @@
 
         if (!editMode) {
             materialStore.add(material, price);
+        } else {
+            materialStore.edit(id, material, price);
         }
 
         cancel();
@@ -25,7 +27,7 @@
     function cancel() {
         material = '';
         price = undefined;
-        id = undefined;
+        id = null;
     }
 </script>
 

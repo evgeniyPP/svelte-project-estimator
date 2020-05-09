@@ -16,6 +16,17 @@ const add = (material, price) => {
     });
 };
 
+const edit = (id, material, price) => {
+    materialStore.update((items) => {
+        const item = items.find((item) => item.id === id);
+
+        item.material = material;
+        item.price = price;
+
+        return items;
+    });
+};
+
 materialStore.subscribe((items) => {
     localStorage.setItem(key, JSON.stringify(items));
 });
@@ -23,4 +34,5 @@ materialStore.subscribe((items) => {
 export default {
     subscribe: materialStore.subscribe,
     add,
+    edit,
 };
